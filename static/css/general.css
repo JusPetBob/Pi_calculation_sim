@@ -1,0 +1,58 @@
+:root {
+    --primary-background-color: hsl(240, 8%, 8%);
+}
+body {
+    background-color: var(--primary-background-color); 
+    margin: 10px;
+}
+
+.lightfont {
+    font-family: 'JetMono-Light';
+    margin: 0;
+}
+
+.lightfontitalic {
+    font-family: 'JetMono-LightItalic';
+    margin: 0;
+}
+
+.text-gradient {
+        background-color: #cc00ff;
+        background: linear-gradient(0deg, rgba(99, 182, 238, 0) 0px, rgb(255, 255, 255), rgb(123, 171, 243));
+        background-clip: text;
+        color: transparent;
+}
+
+p {
+    color: white;
+    font-family: monospace;
+    font-size: 1.3em;
+    user-select: none;
+}
+
+svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tooltiptext {
+    width: 130px;
+    bottom: calc(100% + 3px);
+    background-color: rgba(0, 0, 0, 0.35);
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ffffff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+}

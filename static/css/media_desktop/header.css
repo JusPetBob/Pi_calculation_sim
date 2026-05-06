@@ -1,0 +1,204 @@
+:root {
+    --topbar-button-radius: 15px;
+    --primary-topbar-button-color: hsl(205, 83%, 46%); /*27, 83%, 46%*/
+    --secondary-topbar-button-color: hsl(205, 83%, 60%); /*27, 83%, 60%*/
+    --primary-topbar-button-pattern-color: hsla(205, 83%, 56%, 0.8); /*27, 83%, 66%, 0.5*/
+    --primary-topbar-button-radial-gradient-color: hsl(258, 100%, 67%); /*#ffbc56*/
+    --topbar-button-border-radius: 1px;
+
+    --primary-topbar-background-color: hsl(240, 8%, 8%);
+    --primary-topbar-background-pattern-color: hsl(240, 10%, 6%, 0.5);
+    --primary-topbar-background-radial-gradient-color: hsla(209, 62%, 73%, 0.096);
+}
+
+@media screen and (min-width: 1024px) {
+    .header {
+        position: relative;
+        border-radius: 50px;
+        corner-shape: squircle;
+        background:  
+        repeating-linear-gradient(45deg, 
+        var(--primary-topbar-background-color) , 
+        var(--primary-topbar-background-color) 5px,
+        var(--primary-topbar-background-pattern-color) 5px, 
+        var(--primary-topbar-background-pattern-color) 10px);
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        z-index: 1;
+    }
+
+    .header topbar-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: left;
+        align-items: center;
+        z-index: inherit;
+    }
+    
+    .header::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50px;
+        corner-shape: squircle;
+    }
+
+    .header topbar-title {
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        padding: 0 15px;
+        text-decoration: none;
+    }
+
+    .topbar-undertitle {
+        position: absolute; 
+        font-size: 1em; 
+        justify-self: center; 
+        align-self: center;
+        bottom: 10px;
+        color: hsl(216, 84%, 59%);
+        text-shadow: 0 0 5px rgb(65, 113, 245);
+    }
+
+    .header menu-right {
+        display: flex;
+        gap: 15px;
+        flex: 1;
+        justify-content: left;
+        align-items: center;
+        margin: 10px;
+        margin-left: 15px;
+        padding: 0;
+    }
+
+    .header menu-left {
+        display: flex;
+        gap: 15px;
+        flex: 1;
+        justify-content: right;
+        align-items: center;
+        margin: 10px;
+        padding: 0;
+    }
+
+    .header button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.825);
+    }
+
+    .header button-container:hover {
+        transform: scale(1.05);
+    }
+
+    .header button-container:active {
+        transform: scale(0.75);
+    }
+
+    .header top-button-square {
+        position: relative;
+        display: flex;
+        border: none;
+        overflow: visible;
+        align-items: center;
+        justify-content: center;
+        word-spacing: -9px;
+        color: white;
+        background:  
+        radial-gradient(ellipse, transparent, var(--primary-topbar-button-radial-gradient-color) 50px),
+        var(--primary-topbar-button-color) repeating-linear-gradient(45deg, transparent, transparent 5px,
+        var(--primary-topbar-button-pattern-color) 5px, 
+        var(--primary-topbar-button-pattern-color) 10px);
+        background-clip: padding-box;
+        border-radius: var(--topbar-button-radius);
+        corner-shape: Round;
+        padding: 5px 5px;
+        font-size: 1.25em;
+        height: 35px;
+        aspect-ratio: 1;
+        text-decoration: none;
+        user-select: none;
+        transition: all 0.5s ease;
+    }
+
+    .header top-button {
+        position: relative;
+        display: flex;
+        border: none;
+        overflow: visible;
+        align-items: center;
+        justify-content: center;
+        word-spacing: -9px;
+        color: white;
+        background:  
+        radial-gradient(ellipse, transparent, var(--primary-topbar-button-radial-gradient-color) 200px),
+        var(--primary-topbar-button-color) repeating-linear-gradient(45deg, transparent, transparent 5px,
+        var(--primary-topbar-button-pattern-color) 5px, 
+        var(--primary-topbar-button-pattern-color) 10px);
+        background-clip: padding-box;
+        border-radius: var(--topbar-button-radius);
+        corner-shape: Round;
+        padding: 5px 15px;
+        font-size: 1.25em;
+        width: 150px;
+        height: 35px;
+        text-decoration: none;
+        user-select: none;
+        transition: all 0.5s ease;
+    }
+
+    .header top-button-square::after,
+    .header top-button::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: var(--topbar-button-border-radius);
+        border-radius: calc(var(--topbar-button-radius) + var(--topbar-button-border-radius));
+        background-image: linear-gradient(-45deg, 
+        #ffffff, 
+        #ffffffa8, 
+        #ffffff48, 
+        #ffffff07, 
+        #ffffff00,
+        #ffffff00, 
+        #ffffff1f,
+        #ffffff7a, 
+        #ffffff);
+        z-index: -1;
+    }
+
+    .header top-button-square:hover,
+    .header top-button:hover {
+        font-weight: 600;
+        box-shadow: 0 0 5px 1px var(--primary-topbar-button-color);
+    }
+
+    .header top-button-square:hover:after,
+    .header top-button:hover::after {
+        filter: blur(4px);
+        background-image: linear-gradient(-45deg, 
+        #cc00ff, 
+        #cc00ffa8, 
+        #ffffff48, 
+        #ffffff07, 
+        #ffffff00,
+        #ffffff00, 
+        #ffffff1f,
+        #cc00ff7a, 
+        #cc00ff);
+        box-shadow: 0 0 10px -4px rgb(--primary-topbar-button-radial-gradient-color);
+    }
+
+
+
+    .header top-button.icon {
+        display: none;
+    }
+}
