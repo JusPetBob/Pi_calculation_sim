@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" 
+            content="width=device-width,
+                    initial-scale=1.0">
+
+        <title>Get Pi for Pie</title>
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/divs.css') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/header.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/media_tablet/header.css') }}">
+
+        <style>
+            @font-face {
+                font-family: 'JetMono-Light';
+                src: url('{{ url_for("static", filename="css/fonts/JetBrainsMono-Light.ttf") }}');
+            }
+            @font-face {
+                font-family: 'JetMono-LightItalic';
+                src: url('{{ url_for("static", filename="css/fonts/JetBrainsMono-LightItalic.ttf") }}');
+            }
+            @font-face {
+                font-family: 'JetMono-Medium';
+                src: url('{{ url_for("static", filename="css/fonts/JetBrainsMono-Medium.ttf") }}');
+            }
+            @font-face {
+                font-family: 'JetMono-MediumItalic';
+                src: url('{{ url_for("static", filename="css/fonts/JetBrainsMono-MediumItalic.ttf") }}');
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" id="myHeader">
+            <topbar-container>
+                <topbar-title class="lightfontitalic text-gradient">
+                    <p class="lightfontitalic text-gradient">
+                        <b>Calculate Pi</b>
+                        <p class="lightfont topbar-undertitle">
+                            The Simulator
+                        </p>
+                    </p>
+                </topbar-title>
+                <menu-right class="lightfont">
+
+                    <button-container>
+                        <top-button>
+                            <p class="text-gradient">P i e</p>
+                        </top-button>
+                    </button-container>
+
+                    <button-container>
+                        <top-button>
+                            <p class="text-gradient">U p g r a d e s</p>
+                        </top-button>
+                    </button-container>
+
+                    <top-button href="javascript:void(0);"
+                        class="icon"
+                        onclick="toggleMenu()">
+                        &#9776;
+                    </top-button>
+                </menu-right>
+                <menu-left>
+                    <button-container>
+                        <top-button-square>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
+                                <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </top-button-square>
+                    </button-container>
+                </menu-left>
+            </topbar-container>
+        </div>
+        <a>
+            <p class="p1">Berechnung von Pi!!!!</p>
+        </a>
+        <div class="box top_bot_Margin">
+            <div class="resultSheet border1">
+                <p class="p1"><u>Pi is approximatly</u></p>
+                <div class="textboxDiv">
+                    <input class="textbox p_textbox" id="textbox1">
+                </div>
+                <p class="p2 centerText" id="pie_param">???</p>
+                <div class="buttonDiv top_bot_Margin">
+                    <button class="button" onclick="get_pi()">Get Pi</button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    <script>
+        const pie_param = document.getElementById("pie_param")
+        const textbox1 = document.getElementById("textbox1")
+        async function get_pi(){
+            num = Number(textbox1.value)
+            //console.log(num)
+            if (!(!isNaN(num) && isFinite(num)) || num == NaN || num == 0) {
+                console.log("is no number!!!!!!!!!!!! Grrrrr")
+                num = 69
+            }
+
+            const response = await fetch("/pi?" + new URLSearchParams({"loops":num}).toString()) 
+            if (!response.ok) {
+                console.log("err")
+                return
+            }
+            
+            const data = await response.json()
+            pie_param.textContent = data.pi
+        }
+        function toggleMenu() {
+            let header = document.getElementById("myHeader");
+            header.className = header.className === "header" ?
+                               "header responsive" : "header";
+        }
+    </script>
+</html>
