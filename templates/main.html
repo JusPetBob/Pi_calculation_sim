@@ -88,7 +88,7 @@
                 </div>
                 <p class="p2 centerText" id="pie_param">???</p>
                 <div class="buttonDiv top_bot_Margin">
-                    <button class="button" onclick="get_pi()">Get Pi</button>
+                    <button class="button" onclick="add_pi()">Get Pi</button>
                 </div>
             </div>
         </div>
@@ -97,6 +97,10 @@
     <script>
         const pie_param = document.getElementById("pie_param")
         const textbox1 = document.getElementById("textbox1")
+        var n = 0
+        var is_in = 0
+        const pi = 3.1415926535897932384626433
+
         async function get_pi(){
             num = Number(textbox1.value)
             //console.log(num)
@@ -118,6 +122,12 @@
             let header = document.getElementById("myHeader");
             header.className = header.className === "header" ?
                                "header responsive" : "header";
+        }
+
+        function add_pi(){
+            n += 1
+            is_in += 1 >= Math.pow(Math.random(),2) + Math.pow(Math.random(),2)
+            pie_param.textContent = Math.abs(pi-(is_in/n)*4)
         }
     </script>
 </html>
