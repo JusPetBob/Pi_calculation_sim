@@ -1,0 +1,110 @@
+:root {
+    --currency-radius: 12px;
+    --currency-border-radius: 1px;
+
+    --primary-pie-currency-color: hsl(184, 81%, 45%); /*27, 83%, 46%*/
+    --secondary-pie-currency-color: hsl(184, 74%, 69%); /*27, 83%, 60%*/
+    --primary-pie-currency-pattern-color: hsla(184, 74%, 51%, 0.8); /*27, 83%, 66%, 0.5*/
+    --primary-pie-currency-radial-gradient-color: hsl(150, 84%, 44%); /*#ffbc56*/
+}
+
+@media screen and (min-width: 1024px) {
+    .currency-header {
+        position: relative;
+        border-radius: 50px;
+        corner-shape: squircle;
+        background:  
+        repeating-linear-gradient(45deg, 
+        var(--primary-topbar-background-color) , 
+        var(--primary-topbar-background-color) 5px,
+        var(--primary-topbar-background-pattern-color) 5px, 
+        var(--primary-topbar-background-pattern-color) 10px);
+        margin: 10px 0;
+        padding: 8px;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        z-index: -1;
+    }
+
+    .currency-header c-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .currency-header c-template {
+        position: relative;
+        display: flex;
+        gap: 5px;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background-clip: padding-box;
+        border-radius: var(--currency-radius);
+        corner-shape: Round;
+        padding: 5px 15px;
+        font-size: 1.05em;
+        width: 100px;
+        height: 25px;
+        text-decoration: none;
+        user-select: none;
+        transition: all 0.5s ease;
+    }
+
+    .currency-header c-template::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: var(--currency-border-radius);
+        border-radius: calc(var(--currency-radius) + var(--currency-border-radius));
+        background-image: linear-gradient(-45deg, 
+        #ffffff, 
+        #ffffffa8, 
+        #ffffff48, 
+        #ffffff07, 
+        #ffffff00,
+        #ffffff00, 
+        #ffffff1f,
+        #ffffff7a, 
+        #ffffff);
+        z-index: -1;
+    }
+
+    .pie-currency {
+        background:  
+        radial-gradient(ellipse, transparent, var(--primary-pie-currency-radial-gradient-color) 200px),
+        var(--primary-pie-currency-color) repeating-linear-gradient(45deg, transparent, transparent 5px,
+        var(--primary-pie-currency-pattern-color) 5px, 
+        var(--primary-pie-currency-pattern-color) 10px);
+    }
+
+    .currency-header pie-decoration {
+        position: absolute;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        border-radius: var(--currency-radius);
+        z-index: 2;
+    }
+
+    .pie-decoration-img {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        object-fit: cover;
+        filter: blur(3px);
+        opacity: 0.6;
+        object-position: 0 -10px;
+        height: 100%;
+        width: 200%;
+    }
+}

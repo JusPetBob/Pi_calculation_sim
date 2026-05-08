@@ -1,13 +1,13 @@
 :root {
     --topbar-button-radius: 15px;
+    --topbar-button-border-radius: 1px;
     --primary-topbar-button-color: hsl(205, 83%, 46%); /*27, 83%, 46%*/
     --secondary-topbar-button-color: hsl(205, 83%, 60%); /*27, 83%, 60%*/
     --primary-topbar-button-pattern-color: hsla(205, 83%, 56%, 0.8); /*27, 83%, 66%, 0.5*/
     --primary-topbar-button-radial-gradient-color: hsl(258, 100%, 67%); /*#ffbc56*/
-    --topbar-button-border-radius: 1px;
 
     --primary-topbar-background-color: hsl(240, 8%, 8%);
-    --primary-topbar-background-pattern-color: hsl(240, 10%, 6%, 0.5);
+    --primary-topbar-background-pattern-color: hsl(240, 10%, 6%);
     --primary-topbar-background-radial-gradient-color: hsla(209, 62%, 73%, 0.096);
 }
 
@@ -35,15 +35,6 @@
         justify-content: left;
         align-items: center;
         z-index: inherit;
-    }
-    
-    .header::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50px;
-        corner-shape: squircle;
     }
 
     .header topbar-title {
@@ -86,22 +77,30 @@
         padding: 0;
     }
 
-    .header button-container {
+    .b-template {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+    }
+
+    .b-template button-container {
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.825);
     }
 
-    .header button-container:hover {
+    .b-template button-container:hover {
         transform: scale(1.05);
     }
 
-    .header button-container:active {
+    .b-template button-container:active  {
         transform: scale(0.75);
     }
 
-    .header top-button-square {
+    .b-template top-button-square {
         position: relative;
         display: flex;
         border: none;
@@ -127,7 +126,7 @@
         transition: all 0.5s ease;
     }
 
-    .header top-button {
+    .b-template top-button {
         position: relative;
         display: flex;
         border: none;
@@ -153,6 +152,14 @@
         transition: all 0.5s ease;
     }
 
+    .b-template top-button.text-outline {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        
+    }
+
+
     .header top-button-square::after,
     .header top-button::after {
         content: '';
@@ -176,7 +183,6 @@
 
     .header top-button-square:hover,
     .header top-button:hover {
-        font-weight: 600;
         box-shadow: 0 0 5px 1px var(--primary-topbar-button-color);
     }
 
@@ -195,8 +201,6 @@
         #cc00ff);
         box-shadow: 0 0 10px -4px rgb(--primary-topbar-button-radial-gradient-color);
     }
-
-
 
     .header top-button.icon {
         display: none;

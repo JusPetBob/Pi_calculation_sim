@@ -7,12 +7,16 @@
                     initial-scale=1.0">
 
         <title>Get Pi for Pie</title>
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/images/Pie_Glazing.png') }}">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/general.css') }}">
 
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/currency.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/pi-button.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/divs.css') }}">
-
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/header.css') }}">
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_tablet/header.css') }}">
 
         <style>
@@ -45,52 +49,95 @@
                         </p>
                     </p>
                 </topbar-title>
-                <menu-right class="lightfont">
+                <menu-right>
 
-                    <button-container>
-                        <top-button>
-                            <p class="text-gradient">P i e</p>
-                        </top-button>
-                    </button-container>
+                    <button class="b-template tooltip" id="your_pi">
+                        <span class="tooltipCanvas tooltip-bottom">
+                            <tool-text>View your pi</tool-text>
+                        </span>
+                        <button-container>
+                            <top-button>
+                                <p class="text-outline lightfont">P i e</p>
+                            </top-button>
+                        </button-container>
+                    </button>
 
-                    <button-container>
-                        <top-button>
-                            <p class="text-gradient">U p g r a d e s</p>
-                        </top-button>
-                    </button-container>
+                    <button class="b-template tooltip" id="pi_upgrades">
+                        <span class="tooltipCanvas tooltip-bottom">
+                            <tool-text>Upgrade your pi to get closer to the real one!</tool-text>
+                        </span>
+                        <button-container>
+                            <top-button>
+                                <p class="text-outline lightfont">
+                                    U p g r a d e s
+                                </p>
+                            </top-button>
+                        </button-container>
+                    </button>
 
-                    <top-button href="javascript:void(0);"
+                    <!--<top-button href="javascript:void(0);"
                         class="icon"
                         onclick="toggleMenu()">
                         &#9776;
-                    </top-button>
+                    </top-button>-->
                 </menu-right>
                 <menu-left>
-                    <button-container>
-                        <top-button-square>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
-                                <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
-                                <circle cx="12" cy="12" r="3"/>
-                            </svg>
-                        </top-button-square>
-                    </button-container>
+                    <button class="b-template tooltip" id="setting">
+                        <span class="tooltipCanvas tooltip-left">
+                            <tool-text>Settings</tool-text>
+                        </span>
+                        <button-container>
+                            <top-button-square>
+                                <svg class="drop-shadow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </top-button-square>
+                        </button-container>
+                    </button>
                 </menu-left>
             </topbar-container>
         </div>
-        <a>
-            <p class="p1">Berechnung von Pi!!!!</p>
-        </a>
-        <div class="box top_bot_Margin">
-            <div class="resultSheet border1">
-                <p class="p1"><u>Pi is approximatly</u></p>
-                <div class="textboxDiv">
-                    <input class="textbox p_textbox" id="textbox1">
-                </div>
-                <p class="p2 centerText" id="pie_param">???</p>
-                <div class="buttonDiv top_bot_Margin">
-                    <button class="button" onclick="add_pi()">Get Pi</button>
-                </div>
+        <div class="currency-header">
+            <c-container class="mediumfont">
+                <c-template class="pie-currency" id="pie_cur">
+                    <!-- <pie-decoration>   Looks like someone busted over the div :sob:
+                        <img class="pie-decoration-img"
+                         src="{{ url_for('static', filename='css/images/Pie_Glazing.png') }}">
+                    </pie-decoration> -->
+                    0
+                    <span class="currency-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cake-slice-icon lucide-cake-slice">
+                            <path d="M16 13H3"/>
+                            <path d="M16 17H3"/>
+                            <path d="m7.2 7.9-3.388 2.5A2 2 0 0 0 3 12.01V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-8.654c0-2-2.44-6.026-6.44-8.026a1 1 0 0 0-1.082.057L10.4 5.6"/>
+                            <circle cx="9" cy="7" r="2"/>
+                        </svg>
+                    </span>
+                </c-template>
+                <c-template class="pie-currency"> <!-- Will be something else, like another currency? -->
+                    0
+                </c-template>
+            </c-container>
+        </div>
+        <div class="main">
+            <div class="best-pi">
+                <p class="pie-text-best mediumfontitalic" id="best_pi"><b>Best:<br>3.1415</b></p>
+                <p class="pie-text-average mediumfontitalic" id="avg_pi">Avg: 4.2345</p>
             </div>
+            <pi-canvas>
+                <button class="pi-button">
+                    <img class="pi-icon"
+                        src="{{ url_for('static', filename='css/images/Pi_Icon.png') }}">
+                </button>
+            </pi-canvas>
+        </div>
+        <div class="textboxDiv">
+            <input class="textbox p_textbox" id="textbox1">
+        </div>
+        <p class="p2 centerText" id="pie_param">???</p>
+        <div class="buttonDiv top_bot_Margin">
+            <button class="button" onclick="add_pi()">Get Pi</button>
         </div>
 
     </body>
@@ -118,16 +165,24 @@
             const data = await response.json()
             pie_param.textContent = data.pi
         }
-        function toggleMenu() {
-            let header = document.getElementById("myHeader");
-            header.className = header.className === "header" ?
-                               "header responsive" : "header";
-        }
 
         function add_pi(){
             n += 1
             is_in += 1 >= Math.pow(Math.random(),2) + Math.pow(Math.random(),2)
             pie_param.textContent = Math.abs(pi-(is_in/n)*4)
         }
+
+        function toggleMenu() {
+            let header = document.getElementById("myHeader");
+            header.className = header.className === "header" ?
+                               "header responsive" : "header";
+        }
+
+        // Prevent right clicking on images => Move images into backend?
+        document.addEventListener('contextmenu', function (e) {
+            if (e.target.tagName.toLowerCase() === 'img') {
+                e.preventDefault();
+            }
+        });
     </script>
 </html>
