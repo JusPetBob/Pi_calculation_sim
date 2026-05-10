@@ -1,0 +1,219 @@
+:root {
+    --upgrade-button-radius: 15px;
+    --upgrade-button-border-radius: 1px;
+
+    --primary-upgrade-button-color: hsl(170, 83%, 46%);
+    --primary-upgrade-button-pattern-color: hsla(170, 83%, 56%, 0.8);
+    --primary-upgrade-button-radial-gradient-color: hsl(223, 100%, 67%);
+}
+
+@media screen and (min-width: 1024px) {
+    .u-header {
+        position: relative;
+        border-radius: 20px;
+        corner-shape: squircle;
+        background: linear-gradient(to bottom, hsla(223, 100%, 67%, 0.199), transparent, transparent);
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        z-index: 1;
+    }
+
+    .u-header topbar-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: left;
+        align-items: center;
+        z-index: inherit;
+    }
+
+    .u-header topbar-title {
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 1.5em;
+        padding: 0 15px;
+        text-decoration: none;
+    }
+
+    .u-header menu-right {
+        display: flex;
+        gap: 15px;
+        flex: 1;
+        justify-content: left;
+        align-items: center;
+        margin: 10px;
+        margin-left: 15px;
+        padding: 0;
+    }
+
+    .u-header menu-left {
+        display: flex;
+        gap: 15px;
+        flex: 1;
+        justify-content: right;
+        align-items: center;
+        margin: 10px;
+        padding: 0;
+    }
+
+    .u-header button-square {
+        position: relative;
+        display: flex;
+        border: none;
+        overflow: visible;
+        align-items: center;
+        justify-content: center;
+        word-spacing: -12px;
+        color: white;
+        background:  
+        radial-gradient(ellipse, transparent, var(--primary-upgrade-button-radial-gradient-color) 50px),
+        var(--primary-upgrade-button-color) repeating-linear-gradient(45deg, transparent, transparent 5px,
+        var(--primary-upgrade-button-pattern-color) 5px, 
+        var(--primary-upgrade-button-pattern-color) 10px);
+        background-clip: padding-box;
+        border-radius: var(--topbar-button-radius);
+        corner-shape: Round;
+        padding: 5px 5px;
+        font-size: 1.25em;
+        height: 35px;
+        aspect-ratio: 1;
+        text-decoration: none;
+        user-select: none;
+        transition: all 0.5s ease;
+    }
+
+    .u-header button-normal {
+        position: relative;
+        display: flex;
+        border: none;
+        overflow: visible;
+        align-items: center;
+        justify-content: center;
+        word-spacing: -11px;
+        color: white;
+        background:  
+        radial-gradient(ellipse, transparent, var(--primary-upgrade-button-radial-gradient-color) 200px),
+        var(--primary-upgrade-button-color) repeating-linear-gradient(45deg, transparent, transparent 5px,
+        var(--primary-upgrade-button-pattern-color) 5px, 
+        var(--primary-upgrade-button-pattern-color) 10px);
+        background-clip: padding-box;
+        border-radius: var(--topbar-button-radius);
+        corner-shape: Round;
+        padding: 5px 15px;
+        font-size: 1.25em;
+        width: 150px;
+        height: 35px;
+        text-decoration: none;
+        user-select: none;
+        transition: all 0.5s ease;
+    }
+
+    .u-header button-normal.text-outline {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        
+    }
+
+    .u-header button-square::after,
+    .u-header button-normal::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: var(--upgrade-button-border-radius);
+        border-radius: calc(var(--upgrade-button-radius) + var(--upgrade-button-border-radius));
+        background-image: linear-gradient(-45deg, 
+        #ffffff, 
+        #ffffffa8, 
+        #ffffff48, 
+        #ffffff07, 
+        #ffffff00,
+        #ffffff00, 
+        #ffffff1f,
+        #ffffff7a, 
+        #ffffff);
+        z-index: -1;
+    }
+
+    .u-header button-square:hover,
+    .u-header button-normal:hover {
+        box-shadow: 0 0 5px 1px var(--primary-upgrade-button-color);
+    }
+
+    .u-header button-square:hover:after,
+    .u-header button-normal:hover::after {
+        filter: blur(4px);
+        background-image: linear-gradient(-45deg, 
+        #cc00ff, 
+        #cc00ffa8, 
+        #ffffff48, 
+        #ffffff07, 
+        #ffffff00,
+        #ffffff00, 
+        #ffffff1f,
+        #cc00ff7a, 
+        #cc00ff);
+        box-shadow: 0 0 10px -4px rgb(--primary-upgrade-button-radial-gradient-color);
+    }
+
+    .u-currency-header {
+        position: relative;
+        padding: 2px;
+        width: 100%;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        z-index: 1;
+    }
+
+    .u-currency-header c-container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        padding-left: 15px;
+        justify-content: left;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .u-currency-header c-template {
+        position: relative;
+        display: flex;
+        gap: 5px;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.534);
+        color: white;
+        background-clip: padding-box;
+        border-radius: 15px;
+        padding: 5px 15px;
+        font-size: 1.05em;
+        min-width: 75px;
+        width: auto;
+        height: 15px;
+        user-select: none;
+    }
+
+    .u-currency-header c-template::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 1px;
+        border-radius: 16px;
+        background-image: linear-gradient(-45deg, 
+        #ffffff, 
+        #ffffffa8, 
+        #ffffff48, 
+        #ffffff3b,
+        #ffffff48, 
+        #ffffffa8, 
+        #ffffff);
+        z-index: -1;
+    }
+}

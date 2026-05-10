@@ -1,10 +1,24 @@
+:root {
+    --upgrades-background-color: hsl(240, 8%, 8%);
+    --upgrades-background-pattern-color: hsl(240, 10%, 6%);
+    --upgrades-background-radial-gradient-color: hsla(209, 62%, 73%, 0.096);
+
+    --upgrades-background-color-after: hsl(170, 83%, 36%);
+    --upgrades-background-pattern-color-after: hsla(170, 83%, 56%, 0.8);
+    --upgrades-background-radial-gradient-color-after: hsl(223, 100%, 67%);
+}
+
 @media (min-width: 1024px) {
+    .middle {
+        position: relative;
+        display: inline;
+    }
+
     .main {
-        position: absolute;
+        position: relative;
         display: flex;
         flex-direction: column;
-        height: 500px;
-        width: 500px;
+        width: 500px; height: 500px;
         justify-content: center;
         justify-self: center;
     }
@@ -13,8 +27,7 @@
         position: relative;
         display: flex;
         align-self: center;
-        height: 350px;
-        width: 350px;
+        width: 350px; height: 350px;
         transition: transform 0.25s ease;
     }
 
@@ -25,4 +38,60 @@
     .main pi-canvas:active {
         transform: scale(0.75);
     }
+
+    .overlay {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0; bottom: 0; left: 0; right: 0;
+        backdrop-filter: blur(3px);
+        background: radial-gradient(circle, transparent 600px, rgba(0, 0, 0, 0.507));
+        z-index: 3;
+    }
+    
+    .canvas {
+        position: relative;
+        width: 100%; height: 100%;
+    }
+
+    .overlay upgrade-frame {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+        corner-shape: Squircle;
+        padding: 5px;
+        background:
+            repeating-linear-gradient(45deg, 
+            var(--upgrades-background-color) , 
+            var(--upgrades-background-color) 5px,
+            var(--upgrades-background-pattern-color) 5px, 
+            var(--upgrades-background-pattern-color) 10px);
+        height: 600px;
+        aspect-ratio: 1.6;
+        justify-self: center;
+    }
+    
+    .overlay upgrade-frame::after {
+        position: absolute;
+        content: '';
+        width: 100%; height: 100%;
+        padding: 5px;
+        border-radius: 30px;
+        corner-shape: Squircle;
+        background:  
+            radial-gradient(circle, transparent, var(--upgrades-background-radial-gradient-color-after) 1000px),
+            repeating-linear-gradient(45deg, 
+            var(--upgrades-background-color-after) , 
+            var(--upgrades-background-color-after) 5px,
+            var(--upgrades-background-pattern-color-after) 5px, 
+            var(--upgrades-background-pattern-color-after) 10px);
+        box-shadow: 
+            0 0 20px -5px var(--upgrades-background-radial-gradient-color-after),
+            0 0 10px -2px var(--upgrades-background-radial-gradient-color-after);
+        z-index: -1;
+    }
+
 }

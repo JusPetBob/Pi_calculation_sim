@@ -1,9 +1,24 @@
 :root {
     --primary-background-color: hsl(240, 8%, 8%);
+
     --tooltip-background-color: hsla(220, 68%, 49%, 0.5);
     --tooltip-background-pattern-color: hsla(220, 71%, 46%, 0.5);
     --tooltip-background-border-color: hsla(210, 75%, 52%, 0.829);
+
+    --tooltip-background-color-warning: hsla(34, 68%, 49%, 0.5);
+    --tooltip-background-pattern-color-warning: hsla(34, 71%, 46%, 0.5);
+    --tooltip-background-border-color-warning: hsla(32, 75%, 52%, 0.829);
+
+    --tooltip-background-color-error: hsla(0, 68%, 49%, 0.5);
+    --tooltip-background-pattern-color-error: hsla(0, 71%, 46%, 0.5);
+    --tooltip-background-border-color-error: hsla(0, 75%, 52%, 0.829);
+
+    --primary-exit-button-color: hsl(205, 83%, 46%);
+    --secondary-exit-button-color: hsl(205, 83%, 60%);
+    --primary-exit-button-pattern-color: hsla(205, 83%, 56%, 0.8);
+    --primary-exit-button-radial-gradient-color: hsl(258, 100%, 67%);
 }
+
 body {
     background-color: var(--primary-background-color); 
     margin: 10px;
@@ -74,23 +89,138 @@ svg.drop-shadow {
     height: calc(100% + 2px);
 }
 
+.u-currency-icon {
+    display: flex;
+    justify-content: center;
+    height: calc(100% + 13px);
+}
+
+.b-template {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+}
+
+.b-template button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.825);
+}
+
+.b-template button-container:hover {
+    transform: scale(1.05);
+}
+
+.b-template button-container:active  {
+    transform: scale(0.75);
+}
+
+.b-template exit-button-square {
+    position: relative;
+    display: flex;
+    border: none;
+    overflow: visible;
+    align-items: center;
+    justify-content: center;
+    word-spacing: -9px;
+    color: white;
+    background:  
+    radial-gradient(ellipse, transparent, hsl(0, 100%, 75%) 40px),
+    hsl(0, 79%, 45%) repeating-linear-gradient(45deg, transparent, transparent 5px,
+    hsl(0, 81%, 51%) 5px, 
+    hsl(0, 81%, 51%) 10px);
+    background-clip: padding-box;
+    border-radius: 15px;
+    corner-shape: Round;
+    padding: 5px 5px;
+    font-size: 1.25em;
+    height: 35px;
+    aspect-ratio: 1;
+    text-decoration: none;
+    user-select: none;
+    transition: all 0.5s ease;
+}
+
+.b-template exit-button-square::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 1px;
+    border-radius: 16px;
+    background-image: linear-gradient(-45deg, 
+    #970000, 
+    #ff0000a8, 
+    #d1000048, 
+    #ff000007, 
+    #ff000000,
+    #ff000000, 
+    #d1000048,
+    #ff00007a, 
+    #970000);
+    z-index: -1;
+}
+
+.b-template exit-button-square:hover {
+    box-shadow: 0 0 5px 1px hsl(0, 100%, 75%);
+}
+
+.b-template exit-button-square:hover:after {
+    filter: blur(4px);
+    background-image: linear-gradient(-45deg, 
+    #970000, 
+    #ff0000a8, 
+    #d1000048, 
+    #ff000007, 
+    #ff000000,
+    #ff000000, 
+    #d1000048,
+    #ff00007a, 
+    #970000);
+    box-shadow: 0 0 10px -4px hsl(0, 100%, 57%);
+}
+
 .tooltipCanvas {
-    visibility: hidden;
+    opacity: 0;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
     max-width: 200px;
+    border-radius: 8px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.215, 0.610, 0.355, 1) 0.3s;
+}
+
+.tooltip-standard {
+    border: 1px solid var(--tooltip-background-border-color);
+    box-shadow: 0 2px 10px -3px rgb(43, 108, 228), 0 2px 5px -1px rgba(39, 133, 221, 0.493);
     background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.062)),
         repeating-linear-gradient(45deg, var(--tooltip-background-color), var(--tooltip-background-color) 5px,
         var(--tooltip-background-pattern-color) 5px, 
         var(--tooltip-background-pattern-color) 10px);
-    border-radius: 8px;
-    border: 1px solid var(--tooltip-background-border-color);
-    z-index: 1;
-    opacity: 0;
-    box-shadow: 0 2px 10px -3px rgb(43, 108, 228), 0 2px 5px -1px rgba(39, 133, 221, 0.493);
-    transition: opacity 0.3s cubic-bezier(0.215, 0.610, 0.355, 1), 1s;
+}
+
+.tooltip-warning {
+    border: 1px solid var(--tooltip-background-border-color-warning);
+    box-shadow: 0 2px 10px -3px rgb(228, 142, 43), 0 2px 5px -1px rgba(221, 121, 39, 0.493);
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.062)),
+        repeating-linear-gradient(45deg, var(--tooltip-background-color-warning), var(--tooltip-background-color-warning) 5px,
+        var(--tooltip-background-pattern-color-warning) 5px, 
+        var(--tooltip-background-pattern-color-warning) 10px);
+}
+
+.tooltip-error {
+    border: 1px solid var(--tooltip-background-border-color-error);
+    box-shadow: 0 2px 10px -3px rgb(228, 43, 43), 0 2px 5px -1px rgba(221, 39, 39, 0.493);
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.062)),
+        repeating-linear-gradient(45deg, var(--tooltip-background-color-error), var(--tooltip-background-color-error) 5px,
+        var(--tooltip-background-pattern-color-error) 5px, 
+        var(--tooltip-background-pattern-color-error) 10px);
 }
 
 .tooltipCanvas tool-text {
@@ -100,6 +230,8 @@ svg.drop-shadow {
     font-size: 1em;
 }
 
+.tooltip-top-warning,
+.tooltip-top-error,
 .tooltip-top {
     bottom: 120%;
 }
@@ -109,9 +241,27 @@ svg.drop-shadow {
     top: 100%;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent var(--tooltip-background-border-color) transparent;
+    border-color: var(--tooltip-background-border-color) transparent transparent transparent;
+}
+.tooltip-top-warning::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--tooltip-background-border-color-warning) transparent transparent transparent;
+}
+.tooltip-top-error::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--tooltip-background-border-color-error) transparent transparent transparent;
 }
 
+.tooltip-bottom-warning,
+.tooltip-bottom-error,
 .tooltip-bottom {
     top: 120%;
 }
@@ -123,7 +273,26 @@ svg.drop-shadow {
     border-style: solid;
     border-color: transparent transparent var(--tooltip-background-border-color) transparent;
 }
+.tooltip-bottom-warning::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--tooltip-background-border-color-warning) transparent;
+}
+.tooltip-bottom-error::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--tooltip-background-border-color-error) transparent;
+}
 
+
+.tooltip-left-warning,
+.tooltip-left-error,
 .tooltip-left {
     right: 110%;
 }
@@ -135,7 +304,25 @@ svg.drop-shadow {
     border-style: solid;
     border-color: transparent transparent transparent var(--tooltip-background-border-color);
 }
+.tooltip-left-warning::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--tooltip-background-border-color-warning);
+}
+.tooltip-left-error::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--tooltip-background-border-color-error);
+}
 
+.tooltip-right-warning,
+.tooltip-right-error,
 .tooltip-right {
     left: 110%;
 }
@@ -145,15 +332,32 @@ svg.drop-shadow {
     right: 100%;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent transparent var(--tooltip-background-border-color);
+    border-color: transparent var(--tooltip-background-border-color) transparent transparent;
 }
+.tooltip-right-warning::after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--tooltip-background-border-color-warning) transparent transparent;
+}
+
+.tooltip-right-error::after {
+    content: "";
+    position: absolute;
+    right: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--tooltip-background-border-color-error) transparent transparent;
+}
+
 
 .tooltip {
     position: relative;
-    display: inline-block;
+    display: flex;
 }
 
 .tooltip:hover .tooltipCanvas {
-    visibility: visible;
     opacity: 1;
 }

@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/pi-button.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/divs.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/header.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/media_desktop/upgrades.css') }}">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/media_tablet/header.css') }}">
 
@@ -50,9 +51,8 @@
                     </p>
                 </topbar-title>
                 <menu-right>
-
                     <button class="b-template tooltip" id="your_pi">
-                        <span class="tooltipCanvas tooltip-bottom">
+                        <span class="tooltipCanvas tooltip-standard tooltip-bottom">
                             <tool-text>View your pi</tool-text>
                         </span>
                         <button-container>
@@ -63,7 +63,7 @@
                     </button>
 
                     <button class="b-template tooltip" id="pi_upgrades">
-                        <span class="tooltipCanvas tooltip-bottom">
+                        <span class="tooltipCanvas tooltip-standard tooltip-bottom">
                             <tool-text>Upgrade your pi to get closer to the real one!</tool-text>
                         </span>
                         <button-container>
@@ -83,7 +83,7 @@
                 </menu-right>
                 <menu-left>
                     <button class="b-template tooltip" id="setting">
-                        <span class="tooltipCanvas tooltip-left">
+                        <span class="tooltipCanvas tooltip-standard tooltip-left">
                             <tool-text>Settings</tool-text>
                         </span>
                         <button-container>
@@ -120,24 +120,94 @@
                 </c-template>
             </c-container>
         </div>
-        <div class="main">
-            <div class="best-pi">
-                <p class="pie-text-best mediumfontitalic" id="best_pi"><b>Best:<br>3.1415</b></p>
-                <p class="pie-text-average mediumfontitalic" id="avg_pi">Avg: 4.2345</p>
-            </div>
-            <pi-canvas>
-                <button class="pi-button">
-                    <img class="pi-icon"
-                        src="{{ url_for('static', filename='css/images/Pi_Icon.png') }}">
-                </button>
-            </pi-canvas>
+        <div class="overlay" style="visibility: hidden;"> <!-- Change hidden to visible to view upgrade-frame-->
+            <upgrade-frame>
+                <div class="canvas">
+                    <div class="u-header">
+                        <topbar-container>
+                            <topbar-title class="lightfontitalic text-gradient">
+                                <p class="lightfontitalic text-gradient">
+                                    <b>Upgrades</b>
+                                </p>
+                            </topbar-title>
+                            <menu-right>
+                                <button class="b-template tooltip" id="upgrades_pi_upgrades">
+                                    <span class="tooltipCanvas tooltip-standard tooltip-bottom">
+                                        <tool-text>Upgrade your pi</tool-text>
+                                    </span>
+                                    <button-container>
+                                        <button-normal>
+                                            <p class="text-outline lightfont">U p g r a d e s</p>
+                                        </button-normal>
+                                    </button-container>
+                                </button>
+                                <button class="b-template tooltip" id="upgrades_pi_generators">
+                                    <span class="tooltipCanvas tooltip-standard tooltip-bottom">
+                                        <tool-text>Automatically generate pies</tool-text>
+                                    </span>
+                                    <button-container>
+                                        <button-normal>
+                                            <p class="text-outline lightfont">G e n e r a t o r s</p>
+                                        </button-normal>
+                                    </button-container>
+                                </button>
+                            </menu-right>
+                            <menu-left>
+                                <button class="b-template tooltip" id="setting">
+                                    <span class="tooltipCanvas tooltip-error tooltip-left-error">
+                                        <tool-text>Exit</tool-text>
+                                    </span>
+                                    <button-container>
+                                        <exit-button-square>
+                                            <svg class="drop-shadow" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M18 6 6 18"/>
+                                                <path d="m6 6 12 12"/>
+                                            </svg>
+                                        </exit-button-square>
+                                    </button-container>
+                                </button>
+                            </menu-left>
+                        </topbar-container>
+                    </div>
+                    <div class="u-currency-header">
+                        <c-container class="mediumfont">
+                            <c-template>
+                                69.69k
+                                <span class="u-currency-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cake-slice-icon lucide-cake-slice">
+                                        <path d="M16 13H3"/>
+                                        <path d="M16 17H3"/>
+                                        <path d="m7.2 7.9-3.388 2.5A2 2 0 0 0 3 12.01V20a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-8.654c0-2-2.44-6.026-6.44-8.026a1 1 0 0 0-1.082.057L10.4 5.6"/>
+                                        <circle cx="9" cy="7" r="2"/>
+                                    </svg>
+                                </span>
+                            </c-template>
+                        </c-container>
+                    </div>
+                </div>
+            </upgrade-frame>
         </div>
+        <div class="middle">
+            <div class="main">
+                <div class="best-pi">
+                    <p class="pie-text-best mediumfontitalic"><b>Best:<br>3.1415</b></p>
+                    <p class="pie-text-average mediumfontitalic">Avg: 4.2345</p>
+                </div>
+                <pi-canvas>
+                    <button class="pi-button">
+                        <img class="pi-icon"
+                        src="{{ url_for('static', filename='css/images/Pi_Icon.png') }}">
+                    </button>
+                </pi-canvas>
+            </div>
+        </div>
+        
         <div class="textboxDiv">
             <input class="textbox p_textbox" id="textbox1">
         </div>
         <p class="p2 centerText" id="pie_param">???</p>
         <div class="buttonDiv top_bot_Margin">
-            <button class="button" onclick="add_pi()">Get Pi</button>
+            <button class="button" onclick="get_pi()">Get Pi</button>
         </div>
 
     </body>
